@@ -17,14 +17,16 @@
 // Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 < nums[5] == 6.
 
 const increasingTriplet = (nums) => {
-  let first = Number.MAX_VALUE;
-  let second = Number.MAX_VALUE;
+  let firstNum = Infinity;
+  let secondNum = Infinity;
 
   for (const num of nums) {
-    if (num <= first) first = num;
-    else if (num <= second) second = num;
+    if (num <= firstNum) firstNum = num;
+    else if (num <= secondNum) secondNum = num;
     else return true;
   }
 
-  return false;
+  return false
 };
+
+console.log(increasingTriplet([2,1,5,0,4,6]));
