@@ -12,21 +12,12 @@
 // Output: [0]
 
 const moveZeroes = (nums) => {
-    let index = 0;
+  let index = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i]) {
-            nums[index] = nums[i];
-            index++
-        }
-    }
+  for (let i = 0; i < nums.length; i++) if (nums[i]) nums[index++] = nums[i];
+  while (index < nums.length) nums[index++] = 0;
 
-    while (index < nums.length) {
-        nums[index] = 0;
-        index++;
-    }
-
-    return nums;
+  return nums;
 };
 
 console.log(moveZeroes([0, 1, 0, 3, 12]));
