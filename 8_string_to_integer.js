@@ -72,4 +72,4 @@ const myAtoi = (s) => {
   return 0;
 };
 
-console.log(myAtoi('1337c0d3')); // -2147483648
+console.log(myAtoi('1337c0d3')); // -1337
