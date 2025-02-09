@@ -20,15 +20,19 @@
 // -104 <= nums[i] <= 104
 
 const findMaxAverage = (nums, k) => {
-  let maxSum = nums.slice(0, k).reduce((acc, num) => acc + num, 0);
-  let sum = maxSum;
+  let total = 0;
+  let maxAverage = -Infinity;
 
-  for (let i = k; i < nums.length; i++) {
-    sum += nums[i] - nums[i - k];
-    maxSum = Math.max(maxSum, sum);
+  for (let i = 0; i < nums.length; i++) {
+    total += nums[i];
+
+    if (i >= k - 1) {
+      maxAverage = Math.max(maxAverage, total / k);
+      total -= nums[i - k + 1];
+    }
   }
 
-  return (maxSum / k).toFixed(5);
+  return Number(maxAverage.toFixed(5));
 };
 
 console.log(findMaxAverage([1, 12, -5, -6, 50, 3], 4)); // 12.75000
