@@ -20,26 +20,24 @@
 // Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 const lengthOfLongestSubstring = (s) => {
-  if (!s.length) return 0;
+  const map = new Map();
+  let start = 0;
+  let output = 0;
 
-  let p1 = 0;
-  let p2 = 0;
-  let longestSubstring = -Infinity;
+  for (let end = 0; end < s.length; end++) {
+    map.set(s[end], (map.get(s[end]) || 0) + 1);
 
-  const uniqueLetters = new Set();
-
-  while (p2 < s.length) {
-    if (!uniqueLetters.has(s[p2])) {
-      uniqueLetters.add(s[p2]);
-      longestSubstring = Math.max(longestSubstring, p2 - p1 + 1);
-      p2++;
-    } else {
-      uniqueLetters.delete(s[p1]);
-      p1++;
+    while (map.get(s[end]) > 1) {
+      map.set(s[start], map.get(s[start]) - 1);
+      start++;
     }
+
+    output = Math.max(output, end - start + 1);
   }
 
-  return longestSubstring;
+  return output;
 };
 
 console.log(lengthOfLongestSubstring('abcabcbb')); // 3
+console.log(lengthOfLongestSubstring('bbbbbb')); // 1
+console.log(lengthOfLongestSubstring('pwwkew')); // 3
