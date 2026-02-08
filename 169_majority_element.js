@@ -12,13 +12,19 @@
 // Output: 2
 
 const majorityElement = (nums) => {
-  const halfOccurrences = nums.length / 2;
-  const set = {};
+  let count = 0;
+  let element;
 
   for (const num of nums) {
-    set[num] = (set[num] || 0) + 1;
-    if (set[num] > halfOccurrences) return num;
+    if (count === 0) {
+      element = num;
+      count = 1;
+    } else if (element === num) count++;
+    else count--;
   }
+
+  return element;
 };
 
-console.log(majorityElement([3, 2, 3]));
+console.log(majorityElement([3, 2, 3])); // 3
+console.log(majorityElement([2, 2, 1, 1, 1, 2, 2])); // 2
